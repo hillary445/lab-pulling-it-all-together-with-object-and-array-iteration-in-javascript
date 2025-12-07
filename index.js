@@ -114,3 +114,110 @@ function gameObject() {
         },
     };
 }
+
+// Get all players using Object Iteration
+function allPlayers() {
+  const game = gameObject();
+  const players = {};
+
+  for (const teamKey in game) { // Object Iteration
+    const teamPlayers = game[teamKey].players;
+    for (const playerName in teamPlayers) { // Object Iteration
+      players[playerName] = teamPlayers[playerName];
+    }
+  }
+
+  return players;
+}
+
+// 1. Points scored by a player
+function numPointsScored(playerName) {
+  const players = allPlayers();
+  for (const player in players) { // Object Iteration
+    if (player === playerName) {
+      return players[player].points;
+    }
+  }
+}
+
+// 2. Shoe size of a player
+function shoeSize(playerName) {
+  const players = allPlayers();
+  for (const player in players) { // Object Iteration
+    if (player === playerName) {
+      return players[player].shoe;
+    }
+  }
+}
+
+// 3. Team colors
+function teamColors(teamName) {
+  const game = gameObject();
+  for (const teamKey in game) { // Object Iteration
+    if (game[teamKey].teamName === teamName) {
+      return game[teamKey].colors; 
+    }
+  }
+}
+
+// 4. Team names
+function teamNames() {
+  const game = gameObject();
+  const names = [];
+  for (const teamKey in game) { 
+    names.push(game[teamKey].teamName);
+  }
+  return names;
+}
+
+// 5. Player numbers
+function playerNumbers(teamName) {
+  const game = gameObject();
+  const numbers = [];
+  for (const teamKey in game) { 
+    if (game[teamKey].teamName === teamName) {
+      const players = game[teamKey].players;
+      for (const player in players) { 
+        numbers.push(players[player].number); 
+      }
+    }
+  }
+  return numbers;
+}
+
+// 6. Player stats
+function playerStats(playerName) {
+  const players = allPlayers();
+  for (const player in players) { 
+    if (player === playerName) {
+      return players[player];
+    }
+  }
+}
+
+// 7. Rebounds for player with biggest shoe
+function bigShoeRebounds() {
+  const players = allPlayers();
+  let maxShoe = 0;
+  let rebounds = 0;
+
+  for (const player in players) {
+    if (players[player].shoe > maxShoe) {
+      maxShoe = players[player].shoe;
+      rebounds = players[player].rebounds;
+    }
+  }
+
+  return rebounds;
+}
+
+export {
+  gameObject,
+  numPointsScored,
+  shoeSize,
+  teamColors,
+  teamNames,
+  playerNumbers,
+  playerStats,
+  bigShoeRebounds,
+};
