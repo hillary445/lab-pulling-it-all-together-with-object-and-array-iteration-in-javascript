@@ -115,14 +115,14 @@ function gameObject() {
     };
 }
 
-// Get all players using Object Iteration
+// Get all players
 function allPlayers() {
   const game = gameObject();
   const players = {};
 
-  for (const teamKey in game) { // Object Iteration
+  for (const teamKey in game) {
     const teamPlayers = game[teamKey].players;
-    for (const playerName in teamPlayers) { // Object Iteration
+    for (const playerName in teamPlayers){
       players[playerName] = teamPlayers[playerName];
     }
   }
@@ -133,7 +133,7 @@ function allPlayers() {
 // 1. Points scored by a player
 function numPointsScored(playerName) {
   const players = allPlayers();
-  for (const player in players) { // Object Iteration
+  for (const player in players) {
     if (player === playerName) {
       return players[player].points;
     }
@@ -143,7 +143,7 @@ function numPointsScored(playerName) {
 // 2. Shoe size of a player
 function shoeSize(playerName) {
   const players = allPlayers();
-  for (const player in players) { // Object Iteration
+  for (const player in players) {
     if (player === playerName) {
       return players[player].shoe;
     }
@@ -153,7 +153,7 @@ function shoeSize(playerName) {
 // 3. Team colors
 function teamColors(teamName) {
   const game = gameObject();
-  for (const teamKey in game) { // Object Iteration
+  for (const teamKey in game) {
     if (game[teamKey].teamName === teamName) {
       return game[teamKey].colors; 
     }
